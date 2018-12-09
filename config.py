@@ -17,6 +17,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASKY_POSTS_PER_PAGE = 16
     FLASKY_POSTS_CHAP_PAGE = 100
+    # FLASKY_SERTVER_ADDR = "http://127.0.0.1:8083"
+    FLASKY_SERTVER_ADDR = "http://120.79.217.238:8080"
 
 
     @staticmethod
@@ -26,16 +28,16 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@127.0.0.1/leodb'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/leodb'
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@127.0.0.1/leodb'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/leodb'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@127.0.0.1/leodb'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:7monthdleo@120.79.217.238/leodb'
 
 
 config = {

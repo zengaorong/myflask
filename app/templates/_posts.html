@@ -69,7 +69,7 @@
         <div id="MainForm">
             <div class="form_boxB">
                 <h2>漫画管理列表
-                    <a href="/mhcontrol/backfrom">添加漫画</a>
+                    <a href="/myflask/mhcontrol/backfrom">添加漫画</a>
                 </h2>
 
 
@@ -119,9 +119,9 @@
 {#                            <td>{{post.updata_time}}</td>#}
 {#                            <td>&nbsp;</td>#}
                             <td class="last">
-                                <a href="/mhcontrol/backfrom?id={{ post.id }}">修改 </a>
-                                <a href="/chaptercontrol/chapterlist?mhid={{ post.id }}">章节管理</a>
-                                <a href="/mhcontrol/delete?id={{ post.id }}">删除</a>
+                                <a href="/myflask/mhcontrol/backfrom?id={{ post.id }}">修改 </a>
+                                <a href="/myflask/chaptercontrol/chapterlist?mhid={{ post.id }}">章节管理</a>
+                                <a href="/myflask/mhcontrol/delete?id={{ post.id }}">删除</a>
                             </td>
                         </tr>
                     {% endfor %}

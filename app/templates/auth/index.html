@@ -77,12 +77,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="top-grids">
 
 {#                    {% for data in mhlist %}#}
-{#                        <a class="chapterurl" href="/auth/from/{{ data.id }}">{{ data.mhname }}</a>#}
+{#                        <a class="chapterurl" href="/myflask/auth/from/{{ data.id }}">{{ data.mhname }}</a>#}
 {#                    {% endfor %}#}
 
                     {% for data in mhlist %}
 					<div class="top-grid">
-						<a href="/auth/mhchapter/{{ data.id }}"><img src="{{ data.pic_url }}" alt="" /></a>
+						<a href="/myflask/auth/mhchapter/{{ data.id }}"><img src="{{ data.pic_url }}" alt="" /></a>
 						<div class="top-grid-info">
 							<a href="single.html">{{ data.mhname }}</a>
 {#							<p>Morbi id felis porttitor tellus viverra pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</p>#}

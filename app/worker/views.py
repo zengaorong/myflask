@@ -59,7 +59,7 @@ def savelog():
             rule = Logbook.logbook_time.like('%' + logbook_time + '%')
             logbook_same = Logbook.query.filter(rule).first()
             if logbook_same:
-                return '''<h1>存在该日期的日志，无法修改<h1> <a href="/worker/logbook_today?workerid=%s&logbookid=%s">返回</a>'''%(logbook_same.workerid,id)
+                return '''<h1>存在该日期的日志，无法修改<h1> <a href="/myflask/worker/logbook_today?workerid=%s&logbookid=%s">返回</a>'''%(logbook_same.workerid,id)
             logbook.logbook_time = logbook_time
 
         # and_(*[Manhua.mhname.like('%' + w + '%') for w in words])

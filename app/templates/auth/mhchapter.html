@@ -23,14 +23,14 @@
         <div class="grid-12">
             <div class="active">
                 <ul class="newest">
-                    <li> <a class="post" target="_blank" title="師徒" href="/cartoon/num/3-0-n-297"> <span class="number">297</span> <span>師徒</span> </a> </li>
+                    <li> <a class="post" target="_blank" title="師徒" href="/myflask/cartoon/num/3-0-n-297"> <span class="number">297</span> <span>師徒</span> </a> </li>
                 </ul>
                 <ul class="c-post-list">
                     <div class="section">
                         <a href="javascript:;">1-100</a>
                     </div>
                     {% for chapter in chapters %}
-                    <li> <a class="post" target="_blank" title="结束与开始" href="/auth/addpic/{{ chapter.id }}"> <span class="number">未定</span> <span>{{ chapter.chapter_name }}</span> </a> </li>
+                    <li> <a class="post" target="_blank" title="结束与开始" href="/myflask/auth/addpic/{{ chapter.id }}"> <span class="number">未定</span> <span>{{ chapter.chapter_name }}</span> </a> </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -43,7 +43,7 @@
 {#{% for chapter in chapters %}#}
 {#    <h2>{{ chapter.id }}</h2>#}
 {#    <h2>{{ chapter.mhname }}</h2>#}
-{#    <a class="chapterurl" href="/auth/addpic/{{ chapter.id }}">{{ chapter.chapter_name }}</a>#}
+{#    <a class="chapterurl" href="/myflask/auth/addpic/{{ chapter.id }}">{{ chapter.chapter_name }}</a>#}
 {#{% endfor %}#}
 
 

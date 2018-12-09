@@ -68,7 +68,7 @@
         <div id="MainForm">
             <div class="form_boxB">
                 <h2>章节管理列表
-                    <a href="/chaptercontrol/chapterfrom?mhname_id={{ mhid }}">添加章节</a>
+                    <a href="/myflask/chaptercontrol/chapterfrom?mhname_id={{ mhid }}">添加章节</a>
                 </h2>
                 <table cellpadding="0" cellspacing="0">
                     <tr>
@@ -115,10 +115,10 @@
 {#                            <td>{{post.pics_nums}}</td>#}
 {#                            <td></td>#}
                             <td class="last">
-                                <a href="/chaptercontrol/chapterfrom?id={{ post.id }}&mhid={{ mhid }}">章节信息修改 </a>
-                                <a href="/chaptercontrol/chapterpicfrom?id={{ post.id }}&mhid={{ mhid }}">章节图片修改 </a>
-                                <a href="/chaptercontrol/chapterdelete?id={{ post.id }}&mhid={{ mhid }}">删除章节 </a>
-{#                                <a href="/chaptercontrol/chapterlist?mhid={{ post.id }}">章节管理</a>#}
+                                <a href="/myflask/chaptercontrol/chapterfrom?id={{ post.id }}&mhid={{ mhid }}">章节信息修改 </a>
+                                <a href="/myflask/chaptercontrol/chapterpicfrom?id={{ post.id }}&mhid={{ mhid }}">章节图片修改 </a>
+                                <a href="/myflask/chaptercontrol/chapterdelete?id={{ post.id }}&mhid={{ mhid }}">删除章节 </a>
+{#                                <a href="/myflask/chaptercontrol/chapterlist?mhid={{ post.id }}">章节管理</a>#}
                             </td>
                         </tr>
                     {% endfor %}

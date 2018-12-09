@@ -1,3 +1,4 @@
+#coding=utf-8
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin,AnonymousUserMixin
@@ -5,13 +6,13 @@ from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
-#from . import  login_manager
+
 
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:7monthdleo@127.0.0.1/leodb'
+app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:7monthdleo@120.79.217.238/leodb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

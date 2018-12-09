@@ -69,9 +69,9 @@
         <div id="MainForm">
             <div class="form_boxB">
                 <h2>日志列表
-                    <a href="/tianwang/list_ys">昨日恢复</a>
-                    <a href="/worker/index/{{ id }}">生成日报</a>
-                    <a href="/worker/index/{{ id }}">生成月报</a>
+                    <a href="/myflask/tianwang/list_ys">昨日恢复</a>
+                    <a href="/myflask/worker/index/{{ id }}">生成日报</a>
+                    <a href="/myflask/worker/index/{{ id }}">生成月报</a>
                 </h2>
 
 
@@ -103,8 +103,8 @@
                             <td >{{ post.watcherserverip  }}</td>
                             <td >{{ post.watcherip  }}</td>
                             <td class="last">
-                                <a href="/tianwang/logbook_today?id={{ post.Wterror.id }}&logbookid={{ post.id }}">修改 </a>
-                                <a href="/tianwang/delete?id={{ post.Wterror.id }}" onclick="javascript:return del();">修复</a>
+                                <a href="/myflask/tianwang/logbook_today?id={{ post.Wterror.id }}&logbookid={{ post.id }}">修改 </a>
+                                <a href="/myflask/tianwang/delete?id={{ post.Wterror.id }}" onclick="javascript:return del();">修复</a>
                             </td>
                         </tr>
                     {% endfor %}

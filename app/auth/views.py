@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, redirect, request, url_for, flash,current_app
 from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import auth
@@ -59,9 +59,10 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        addr = current_app.config['FLASKY_SERTVER_ADDR']
         token = user.generate_confirmation_token()
         send_email(user.email, 'Confirm Your Account',
-                   'auth/email/confirm', user=user, token=token)
+                   'auth/email/confirm', user=user, token=token ,addr=addr)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
@@ -84,8 +85,9 @@ def confirm(token):
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
+    addr = current_app.config['FLASKY_SERTVER_ADDR']
     send_email(current_user.email, 'Confirm Your Account',
-               'auth/email/confirm', user=current_user, token=token)
+               'auth/email/confirm', user=current_user, token=token,addr=addr)
     flash('A new confirmation email has been sent to you by email.')
     return redirect(url_for('main.index'))
 
@@ -115,9 +117,10 @@ def password_reset_request():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             token = user.generate_reset_token()
+            addr = current_app.config['FLASKY_SERTVER_ADDR']
             send_email(user.email, 'Reset Your Password',
                        'auth/email/reset_password',
-                       user=user, token=token)
+                       user=user, token=token,addr=addr)
         flash('An email with instructions to reset your password has been '
               'sent to you.')
         return redirect(url_for('auth.login'))
@@ -147,9 +150,10 @@ def change_email_request():
         if current_user.verify_password(form.password.data):
             new_email = form.email.data
             token = current_user.generate_email_change_token(new_email)
+            addr = current_app.config['FLASKY_SERTVER_ADDR']
             send_email(new_email, 'Confirm your email address',
                        'auth/email/change_email',
-                       user=current_user, token=token)
+                       user=current_user, token=token,addr=addr)
             flash('An email with instructions to confirm your new email '
                   'address has been sent to you.')
             return redirect(url_for('main.index'))

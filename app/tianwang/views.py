@@ -81,7 +81,7 @@ def savelog():
         db.session.add(wterror)
         db.session.commit()
         return redirect(url_for('tianwang.list'))
-    return '''<h1>数据错误<h1> <a href="/tianwang/logbook_today?id=%s">返回</a>''' %(id)
+    return '''<h1>数据错误<h1> <a href="/myflask/tianwang/logbook_today?id=%s">返回</a>''' %(id)
 
 
 

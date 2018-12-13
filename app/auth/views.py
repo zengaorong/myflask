@@ -53,6 +53,7 @@ def logout():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+
     if form.validate_on_submit():
         user = User(email=form.email.data,
                     username=form.username.data,
@@ -65,6 +66,7 @@ def register():
                    'auth/email/confirm', user=user, token=token ,addr=addr)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
+    # return form
     return render_template('auth/register.html', form=form)
 
 

@@ -146,5 +146,5 @@ def list_ys():
 
 @tianwang.route('/test',methods=['GET', 'POST'])
 def test():
-    return render_template('tianwang/test.html')
+    return render_template('tianwang/tests.html')
 

@@ -1,5 +1,6 @@
+#coding=utf-8
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,SelectMultipleField,SelectField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from wtforms import ValidationError
 from ..models import User
@@ -16,6 +17,18 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])
+    my_choices = [('1', 'Choice1'), ('2', 'Choice2'), ('3', 'Choice3')]
+
+    select = SelectField(label='类别',
+                                         validators=[DataRequired('请选择标签')],
+                                         render_kw={
+                                             'class': 'form-control'
+                                         },
+                                         choices=[(1, '情感'), (2, '星座'), (3, '爱情')],
+                                        default=3,
+                                         coerce=int
+                                         )
+
     username = StringField('Username', validators=[
         DataRequired(), Length(1, 64),])
     password = PasswordField('Password', validators=[

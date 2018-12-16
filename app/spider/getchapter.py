@@ -19,7 +19,7 @@ chapter_list = chapter_soup.find_all('dd')
 # chapter_id,story_id,chapter_num,chapter_name,chapter_url,chapter_text
 
 num = 0
-check_num = 2
+check_num = 5
 for key in chapter_list[6:]:
     chapter_name = key.string
     chapter_url = key.find('a')['href']
@@ -37,5 +37,7 @@ for key in chapter_list[6:]:
             check_num = 0
         except:
             check_num = check_num - 1
+            print "error"
+            print chapter_num
 
-    check_num = 2
+    check_num = 5

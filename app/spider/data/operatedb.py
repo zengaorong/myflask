@@ -57,7 +57,6 @@ def check_chapter_todb(story_id,chapter_num):
     sqli =  "select * from storyChapter where story_id=%s and chapter_num=%s"
     result = cur.execute(sqli,[story_id,chapter_num])
     conn.close()
-    print type(result)
     if result==long(0):
         return False
     return True

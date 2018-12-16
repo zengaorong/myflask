@@ -5,7 +5,8 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from datetime import  datetime
-from data.operatedb import insert_story_todb
+from data.operatedb import insert_story_todb,check_story_todb
+from getchapter import getchapter
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -44,8 +45,10 @@ for cell in div_list:
     story_intro = cell.find('p').string
     # print story_url,story_last_chapter_url,story_name,story_last_chapter_name,author,story_intro
     story_id =  story_url.split('/')[-2]
+    if check_story_todb(story_id):
+        continue
     insert_story_todb([story_id , story_url,story_name,story_intro,author,story_last_chapter_url,story_last_chapter_name,0])
-    break
+    getchapter('http://www.biquge.lu/' + story_url)
 
 
 

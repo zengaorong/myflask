@@ -5,7 +5,6 @@ import os
 import re
 import uuid
 import platform
-from app.leotool.readexcel import readexcel_todict
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -56,6 +55,23 @@ def check_chapter_todb(story_id,chapter_num):
     cur = conn.cursor()
     sqli =  "select * from storyChapter where story_id=%s and chapter_num=%s"
     result = cur.execute(sqli,[story_id,chapter_num])
+    conn.close()
+    if result==long(0):
+        return False
+    return True
+
+def check_story_todb(story_id):
+    conn= MySQLdb.connect(
+        host= '120.79.217.238',
+        port = 3306,
+        user='root',
+        passwd='7monthdleo',
+        db = dataname,
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    sqli =  "select * from story where story_id=%s"
+    result = cur.execute(sqli,[story_id])
     conn.close()
     if result==long(0):
         return False

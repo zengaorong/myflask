@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=H:\python\myflask\venv"
+set "VIRTUAL_ENV=J:\python\myflask\venv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

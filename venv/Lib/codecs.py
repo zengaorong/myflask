@@ -252,7 +252,7 @@ class IncrementalDecoder(object):
     """
     def __init__(self, errors='strict'):
         """
-        Creates an IncrementalDecoder instance.
+        Creates a IncrementalDecoder instance.
 
         The IncrementalDecoder may use different error handling schemes by
         providing the errors keyword argument. See the module docstring
@@ -1012,7 +1012,7 @@ def iterencode(iterator, encoding, errors='strict', **kwargs):
     """
     Encoding iterator.
 
-    Encodes the input strings from the iterator using an IncrementalEncoder.
+    Encodes the input strings from the iterator using a IncrementalEncoder.
 
     errors and kwargs are passed through to the IncrementalEncoder
     constructor.
@@ -1030,7 +1030,7 @@ def iterdecode(iterator, encoding, errors='strict', **kwargs):
     """
     Decoding iterator.
 
-    Decodes the input strings from the iterator using an IncrementalDecoder.
+    Decodes the input strings from the iterator using a IncrementalDecoder.
 
     errors and kwargs are passed through to the IncrementalDecoder
     constructor.

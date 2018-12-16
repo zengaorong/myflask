@@ -9,24 +9,9 @@
 
 #include <Carbon/Carbon.h>
 
-/*
-** Issue #27806: Workaround for gcc 4.x which does not have _has_include.
-*/
-#ifndef __has_include
-#define __has_include(x) 0
-#endif
-/* Workaround */
-
-#if __has_include(<Availability.h>)
-#include <Availability.h>
-#define APPLE_SUPPORTS_QUICKTIME (__MAC_OS_X_VERSION_MAX_ALLOWED < 101200) && !__LP64__
-#else
-#define APPLE_SUPPORTS_QUICKTIME !__LP64__
-#endif
-
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 #include <QuickTime/QuickTime.h>
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /*
 ** Helper routines for error codes and such.
@@ -36,10 +21,10 @@ extern PyObject *PyMac_OSErrException;		/* Exception for OSErr */
 PyObject *PyMac_GetOSErrException(void);	/* Initialize & return it */
 PyObject *PyErr_Mac(PyObject *, int);		/* Exception with a mac error */
 PyObject *PyMac_Error(OSErr);			/* Uses PyMac_GetOSErrException */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__ 
 extern OSErr PyMac_GetFullPathname(FSSpec *, char *, int); /* convert
 							      fsspec->path */
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* __LP64__ */
 
 /*
 ** These conversion routines are defined in mactoolboxglue.c itself.
@@ -124,54 +109,54 @@ extern PyObject *CmpInstObj_New(ComponentInstance);
 extern int CmpInstObj_Convert(PyObject *, ComponentInstance *);
 
 /* Ctl exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *CtlObj_New(ControlHandle);
 extern int CtlObj_Convert(PyObject *, ControlHandle *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Dlg exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *DlgObj_New(DialogPtr);
 extern int DlgObj_Convert(PyObject *, DialogPtr *);
 extern PyObject *DlgObj_WhichDialog(DialogPtr);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Drag exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *DragObj_New(DragReference);
 extern int DragObj_Convert(PyObject *, DragReference *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* List exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *ListObj_New(ListHandle);
 extern int ListObj_Convert(PyObject *, ListHandle *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Menu exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *MenuObj_New(MenuHandle);
 extern int MenuObj_Convert(PyObject *, MenuHandle *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Qd exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *GrafObj_New(GrafPtr);
 extern int GrafObj_Convert(PyObject *, GrafPtr *);
 extern PyObject *BMObj_New(BitMapPtr);
 extern int BMObj_Convert(PyObject *, BitMapPtr *);
 extern PyObject *QdRGB_New(RGBColor *);
 extern int QdRGB_Convert(PyObject *, RGBColor *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Qdoffs exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *GWorldObj_New(GWorldPtr);
 extern int GWorldObj_Convert(PyObject *, GWorldPtr *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Qt exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *TrackObj_New(Track);
 extern int TrackObj_Convert(PyObject *, Track *);
 extern PyObject *MovieObj_New(Movie);
@@ -184,7 +169,7 @@ extern PyObject *UserDataObj_New(UserData);
 extern int UserDataObj_Convert(PyObject *, UserData *);
 extern PyObject *MediaObj_New(Media);
 extern int MediaObj_Convert(PyObject *, Media *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Res exports */
 extern PyObject *ResObj_New(Handle);
@@ -193,17 +178,17 @@ extern PyObject *OptResObj_New(Handle);
 extern int OptResObj_Convert(PyObject *, Handle *);
 
 /* TE exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *TEObj_New(TEHandle);
 extern int TEObj_Convert(PyObject *, TEHandle *);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* Win exports */
-#if APPLE_SUPPORTS_QUICKTIME
+#ifndef __LP64__
 extern PyObject *WinObj_New(WindowPtr);
 extern int WinObj_Convert(PyObject *, WindowPtr *);
 extern PyObject *WinObj_WhichWindow(WindowPtr);
-#endif /* APPLE_SUPPORTS_QUICKTIME */
+#endif /* !__LP64__ */
 
 /* CF exports */
 extern PyObject *CFObj_New(CFTypeRef);

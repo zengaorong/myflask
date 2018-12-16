@@ -62,3 +62,10 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('edit_profile.html', form=form, user=user)
+
+
+@main.route('/leotest', methods=['GET', 'POST'])
+@admin_required
+@login_required
+def leotest():
+    return "ok"

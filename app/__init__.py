@@ -38,22 +38,7 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/myflask/auth')
 
-    from .mhcontrol import mhcontrol as mhcontrol_blueprint
-    app.register_blueprint(mhcontrol_blueprint, url_prefix='/mhcontrol')
-
-    from .manhua import manhua as manhu_blueprint
-    app.register_blueprint(manhu_blueprint, url_prefix='/manhua')
-
-    from .api import api as api_blueprint
-    app.register_blueprint(api_blueprint, url_prefix='/api')
-
-    from .chaptercontrol import chaptercontrol as chaptercontrol_blueprint
-    app.register_blueprint(chaptercontrol_blueprint, url_prefix='/chaptercontrol')
-
-    from .worker import worker  as worker_blueprint
-    app.register_blueprint(worker_blueprint, url_prefix='/worker')
-
-    from .tianwang import tianwang  as tianwang_blueprint
-    app.register_blueprint(tianwang_blueprint, url_prefix='/tianwang')
+    from .spider import spider as spider_blueprint
+    app.register_blueprint(spider_blueprint, url_prefix='/spider')
 
     return app

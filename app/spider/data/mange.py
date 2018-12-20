@@ -23,6 +23,7 @@ class Story(db.Model):
     story_last_chapter_url = db.Column(db.String(128))
     story_last_chapter_name = db.Column(db.String(128))
     story_type = db.Column(db.Integer)
+    image_data = db.Column(db.Text())
 
     #users = db.relationship('User', backref='role', lazy='dynamic')
     def __repr__(self):

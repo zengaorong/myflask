@@ -29,7 +29,33 @@ def get_serch_list(serch_str):
     #     div_img = div_cell.find("div",{'class','bookimg'})
     #     print div_img.find("img")['src']
 
-    return div_lists
+    # 小说库 小说id 小说url 最近章节url 章节名称 最新章节url 名称 作者 简介
+    # 对于数据库 添加章节字段 但是不是在该处 而是执行更新的时候
+    #(story_id story_url,story_name,story_intro,author,story_last_chapter_url,story_last_chapter_name,story_type
+
+    story_list = []
+    for cell in div_lists:
+        temp_list = []
+        #print type(cell)
+        list_a = cell.find_all('a')
+        story_url,story_last_chapter_url,story_name,story_last_chapter_name = list_a[1]['href'],list_a[2]['href'],list_a[1].string,list_a[2].string
+        #print story_url,story_chapter_url,story_name,story_chapter_name
+        author = cell.find('div',{'class','author'}).string
+        story_intro = cell.find('p').string
+        # print story_url,story_last_chapter_url,story_name,story_last_chapter_name,author,story_intro
+        story_id =  story_url.split('/')[-2]
+        temp_dict = {
+            'story_id' : story_id,
+            'story_url' : story_url,
+            'story_name' : story_name,
+            'story_intro' : story_intro,
+            'author' : author,
+            'story_last_chapter_url' : story_last_chapter_url,
+            'story_last_chapter_name' : story_last_chapter_name
+        }
+        story_list.append(temp_dict)
+
+    return story_list
 
 #get_serch_list("大道朝天")
 

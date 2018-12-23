@@ -13,7 +13,7 @@
 
 	<style>
 		.button {
-			background-color: #FF0066 ; /* Green */
+			background-color: #FF9999   ; /* Green */
 			border: none;
 			color: white;
 			text-align: center;
@@ -21,7 +21,7 @@
 			display: inline-block;
 			width: 30%;
 			height: 20%;
-			margin: 8px 10px;
+			margin: 26px 26px;
 			cursor: pointer;
 		}
 		.button3 {border-radius: 8px;}
@@ -57,10 +57,9 @@
 	<div class="so_list bookcase">
 		<h2> 与“大道朝天”相关的小说 -  <font size="2px">(最多显示100条)</font></h2>
 		<div class="type_show">
-
-
-		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="http://www.biquge.lu/book/39651/"><img src="data:image/jpg;base64,{{imagebase64}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="http://www.biquge.lu/book/39651/">大道朝天</a></h4><div class="cat">分类：玄幻小说</div><div class="author">作者：猫腻</div><div class="update"><span>最新章节：</span><a href="http://www.biquge.lu/book/39651/19474539.html">第443章 分茶</a></div><p>    千里杀一人，十步不愿行。（欢迎加入猫腻大道朝天官方群，群号码：311875513）
-……</p><button class="button button3">8px</button><button class="button button3">8px</button></div></div></div>
+		{% for data in serch_list %}
+		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="http://www.biquge.lu/book/39651/"><img src="data:image/jpg;base64,{{imagebase64}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="http://www.biquge.lu/book/39651/">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="http://www.biquge.lu/book/39651/19474539.html">{{data.story_last_chapter_name}}</a></div><p style="maxlength: 5;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{data.story_intro}}</p><button class="button button3">8px</button><button class="button button3">8px</button></div></div></div>
+		{% endfor %}
 
 		</div>
 

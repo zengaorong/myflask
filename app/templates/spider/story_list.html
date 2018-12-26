@@ -25,6 +25,7 @@
 			cursor: pointer;
 		}
 		.button3 {border-radius: 8px;}
+
 	</style>
 
 </head>
@@ -58,7 +59,7 @@
 		<h2> 与“大道朝天”相关的小说 -  <font size="2px">(最多显示100条)</font></h2>
 		<div class="type_show">
 		{% for data in serch_list %}
-		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="http://www.biquge.lu/book/39651/"><img src="data:image/jpg;base64,{{imagebase64}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="http://www.biquge.lu/book/39651/">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="http://www.biquge.lu/book/39651/19474539.html">{{data.story_last_chapter_name}}</a></div><p style="maxlength: 5;overflow: hidden; text-overflow:ellipsis;white-space: nowrap">{{data.story_intro}}</p><button class="button button3">8px</button><button class="button button3">8px</button></div></div></div>
+		<div class="bookbox"><div class="p10"><div class="bookimg"><a href="http://www.biquge.lu/book/39651/"><img src="data:image/jpg;base64,{{imagebase64}}"></a></div><div class="bookinfo"><h4 class="bookname"><a href="http://www.biquge.lu/book/39651/">{{data.story_name}}</a></h4><div class="author">作者：{{data.author}}</div><div class="update"><span>最新章节：</span><a href="..{{data.story_last_chapter_url}}">{{data.story_last_chapter_name}}</a></div><p style="display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{data.story_intro}}</p><button class="button button3">8px</button><button class="button button3">8px</button></div></div></div>
 		{% endfor %}
 
 		</div>

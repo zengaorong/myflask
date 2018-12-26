@@ -18,10 +18,10 @@ head = {
 
 def story_spider_for_biequge(url,list):
     respons = requests.get(url,headers=head,timeout=30)
-    with open("result.html","w") as f:
-        f.writelines(respons.text.replace('\r','\n'))
-
-    soup = BeautifulSoup(open("result.html"),"html.parser")
+    # with open("result.html","w") as f:
+    #     f.writelines(respons.text.replace('\r','\n'))
+    #
+    soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
     div_list = soup.find("div" ,id="content")
     insert_chapter_todb([uuid.uuid1(),list[0],list[1],list[2],list[3],div_list])
 

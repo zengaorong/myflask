@@ -6,7 +6,7 @@ from flask_login import login_user, logout_user, login_required, \
 from . import spider
 from serch import get_serch_list
 from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
-from ..models import Manhua,Chapter
+from ..models import StoryChapter
 from .form import fromtest
 import sys
 
@@ -27,9 +27,31 @@ def ajax_index():
 def search_story():
     serch_str = "元尊"
     serch_list = get_serch_list(serch_str)
-    print len(serch_list)
     imagebase64 = get_picbase64("app/leotool/bs64pic/chaotian.jpg")
     return render_template('spider/story_list.html',serch_list=serch_list,imagebase64=imagebase64)
+
+# 小说内容界面
+@spider.route('/book/<story>/<chapter>',methods=['GET', 'POST'])
+def book(story,chapter):
+    storyChapter = StoryChapter.query.filter_by(story_id=story ,chapter_num=chapter).first()
+    story_text = storyChapter.chapter_text
+    return render_template('spider/story_base.html',story_data=story_text)
+
+# 小说章节界面
+@spider.route('/book/<story>',methods=['GET', 'POST'])
+def chapter(story):
+    storyChapter = StoryChapter.query.filter_by(story_id=story)
+    story_chapter_list = []
+    for chapter in storyChapter:
+        temp_dict = {}
+        temp_dict['chapter_name'] = chapter.chapter_name
+        temp_dict['chapter_url'] = chapter.chapter_url.replace(".html","")
+        story_chapter_list.append(temp_dict)
+
+    #story_text = storyChapter.chapter_text
+    return render_template('spider/story_chapter.html',story_chapter_list=story_chapter_list)
+
+
 
 
 @spider.route('/register', methods=['GET', 'POST'])

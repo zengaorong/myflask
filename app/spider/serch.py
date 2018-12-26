@@ -50,7 +50,7 @@ def get_serch_list(serch_str):
             'story_name' : story_name,
             'story_intro' : story_intro,
             'author' : author,
-            'story_last_chapter_url' : story_last_chapter_url,
+            'story_last_chapter_url' : story_last_chapter_url.replace('.html',''),
             'story_last_chapter_name' : story_last_chapter_name
         }
         story_list.append(temp_dict)

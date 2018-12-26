@@ -43,6 +43,39 @@ def insert_chapter_todb(list):
     conn.commit()
     conn.close()
 
+def update_chapter_todb(story_text,story_id,chapter_num):
+    conn= MySQLdb.connect(
+        host= '120.79.217.238',
+        port = 3306,
+        user='root',
+        passwd='7monthdleo',
+        db = dataname,
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    sqli =  "update storyChapter set chapter_text=%s where story_id=%s and chapter_num= %s"
+    cur.execute(sqli,[story_text,story_id,chapter_num])
+    conn.commit()
+    conn.close()
+
+def check_chaptertext_isnull():
+    conn= MySQLdb.connect(
+        host= '120.79.217.238',
+        port = 3306,
+        user='root',
+        passwd='7monthdleo',
+        db = dataname,
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    sqli =  "SELECT * from storyChapter WHERE chapter_text is null"
+    result = cur.execute(sqli)
+    info = cur.fetchmany(result)
+    if info:
+        return info
+    else:
+        return None
+
 def check_chapter_todb(story_id,chapter_num):
     conn= MySQLdb.connect(
         host= '120.79.217.238',

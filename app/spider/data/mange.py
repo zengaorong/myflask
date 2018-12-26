@@ -9,8 +9,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-
-
 #story_id story_url,story_name,story_intro,author,story_last_chapter_url,story_last_chapter_name,story_type
 
 class Story(db.Model):

@@ -23,6 +23,6 @@ for key in chaptertext_list:
     soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
     div_list = soup.find("div" ,id="content")
     update_chapter_todb(div_list,key[1],key[2])
-    if num/10==1:
+    if num%10==1:
         print num
     num = num -1

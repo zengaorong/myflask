@@ -33,5 +33,6 @@ for key in chaptertext_list:
             if num%10==1:
                 print num
             num = num -1
+            try_num = 5
             break
     try_num = 5

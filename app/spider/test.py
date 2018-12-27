@@ -18,7 +18,7 @@ head = {
 
 chaptertext_list = check_chaptertext_isnull()
 num = len(chaptertext_list)
-try_num = 3
+try_num = 5
 for key in chaptertext_list:
     while try_num!=0:
         respons = requests.get('http://www.biquge.lu/' + key[4],headers=head,timeout=30)
@@ -33,5 +33,5 @@ for key in chaptertext_list:
             if num%10==1:
                 print num
             num = num -1
-            try_num = 3
             break
+    try_num = 5

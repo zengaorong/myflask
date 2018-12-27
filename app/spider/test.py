@@ -19,21 +19,28 @@ head = {
 chaptertext_list = check_chaptertext_isnull()
 num = len(chaptertext_list)
 try_num = 5
-for key in chaptertext_list:
-    while try_num!=0:
-        respons = requests.get('http://www.biquge.lu/' + key[4],headers=head,timeout=30)
-        soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
-        div_list = soup.find("div" ,id="content")
-        if div_list == None:
-            print "wrong story url is:%s"%key[4]
-            try_num = try_num - 1
-            continue
-        else:
-            update_chapter_todb(div_list,key[1],key[2])
-            if num%10==1:
-                print num
-            num = num -1
-            try_num = 5
 
-            break
-    try_num = 5
+url = "http://www.biquge.lu/book/16364/14551807.html"
+respons = requests.get(url,headers=head)
+soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
+div_list = soup.find("div" ,id="content")
+print div_list
+
+# for key in chaptertext_list:
+#     while try_num!=0:
+#         respons = requests.get('http://www.biquge.lu/' + key[4],headers=head,timeout=30)
+#         soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
+#         div_list = soup.find("div" ,id="content")
+#         if div_list == None:
+#             print "wrong story url is:%s"%key[4]
+#             try_num = try_num - 1
+#             continue
+#         else:
+#             update_chapter_todb(div_list,key[1],key[2])
+#             if num%10==1:
+#                 print num
+#             num = num -1
+#             try_num = 5
+#
+#             break
+#     try_num = 5

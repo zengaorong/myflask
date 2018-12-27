@@ -4,6 +4,7 @@ from flask import render_template, redirect, request, url_for, flash,jsonify,sen
 from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import spider
+from .. import db
 from serch import get_serch_list
 from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
 from ..models import StoryChapter
@@ -40,7 +41,10 @@ def book(story,chapter):
 # 小说章节界面
 @spider.route('/book/<story>',methods=['GET', 'POST'])
 def chapter(story):
-    storyChapter = StoryChapter.query.filter_by(story_id=story)
+    # storyChapter = StoryChapter.query.filter_by(story_id=story)
+    # print StoryChapter.query.filter_by(story_id=story)
+    storyChapter = db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_url).filter(StoryChapter.story_id == story )
+    print db.session.query(StoryChapter.chapter_name,StoryChapter.chapter_url).filter(StoryChapter.story_id == story )
     story_chapter_list = []
     for chapter in storyChapter:
         temp_dict = {}

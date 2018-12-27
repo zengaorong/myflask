@@ -32,8 +32,9 @@ for key in chaptertext_list:
         soup = BeautifulSoup(respons.text.replace('\r','\n'),"html.parser")
         div_list = soup.find("div" ,id="content")
         if div_list == None:
-            print "wrong story url is:%s"%key[4]
             try_num = try_num - 1
+            if try_num == 0:
+                print "wrong story url is:%s"%key[4]
             continue
         else:
             update_chapter_todb(div_list,key[1],key[2])

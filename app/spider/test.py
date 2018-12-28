@@ -35,6 +35,7 @@ for key in chaptertext_list:
             try_num = try_num - 1
             if try_num == 0:
                 print "wrong story url is:%s"%key[4]
+            time.sleep(0.5)
             continue
         else:
             update_chapter_todb(div_list,key[1],key[2])

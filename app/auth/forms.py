@@ -19,15 +19,15 @@ class RegistrationForm(FlaskForm):
                                              Email()])
     my_choices = [('1', 'Choice1'), ('2', 'Choice2'), ('3', 'Choice3')]
 
-    select = SelectField(label='类别',
-                                         validators=[DataRequired('请选择标签')],
-                                         render_kw={
-                                             'class': 'form-control'
-                                         },
-                                         choices=[(1, '情感'), (2, '星座'), (3, '爱情')],
-                                        default=3,
-                                         coerce=int
-                                         )
+    # select = SelectField(label='类别',
+    #                                      validators=[DataRequired('请选择标签')],
+    #                                      render_kw={
+    #                                          'class': 'form-control'
+    #                                      },
+    #                                      choices=[(1, '情感'), (2, '星座'), (3, '爱情')],
+    #                                     default=3,
+    #                                      coerce=int
+    #                                      )
 
     username = StringField('Username', validators=[
         DataRequired(), Length(1, 64),])

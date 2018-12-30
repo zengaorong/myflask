@@ -14,7 +14,7 @@ from wtforms.utils import unset_value
 __all__ = (
     'BooleanField', 'DecimalField', 'DateField', 'DateTimeField', 'FieldList',
     'FloatField', 'FormField', 'IntegerField', 'RadioField', 'SelectField',
-    'SelectMultipleField', 'StringField',
+    'SelectMultipleField', 'StringField','TextAreaField',
 )
 
 
@@ -522,6 +522,22 @@ class StringField(Field):
     represents an ``<input type="text">``.
     """
     widget = widgets.TextInput()
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = valuelist[0]
+        else:
+            self.data = ''
+
+    def _value(self):
+        return text_type(self.data) if self.data is not None else ''
+
+class TextAreaField(Field):
+    """
+    This field is the base for most of the more complicated fields, and
+    represents an ``<input type="text">``.
+    """
+    widget = widgets.TextArea()
 
     def process_formdata(self, valuelist):
         if valuelist:

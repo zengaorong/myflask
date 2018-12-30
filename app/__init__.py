@@ -41,4 +41,7 @@ def create_app(config_name):
     from .spider import spider as spider_blueprint
     app.register_blueprint(spider_blueprint, url_prefix='/spider')
 
+    from .editpu import editpu as editpu_blueprint
+    app.register_blueprint(editpu_blueprint, url_prefix='/editpu')
+
     return app

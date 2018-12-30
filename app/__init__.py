@@ -39,9 +39,9 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint, url_prefix='/myflask/auth')
 
     from .spider import spider as spider_blueprint
-    app.register_blueprint(spider_blueprint, url_prefix='/spider')
+    app.register_blueprint(spider_blueprint, url_prefix='/myflask/spider')
 
     from .editpu import editpu as editpu_blueprint
-    app.register_blueprint(editpu_blueprint, url_prefix='/editpu')
+    app.register_blueprint(editpu_blueprint, url_prefix='/myflask/editpu')
 
     return app

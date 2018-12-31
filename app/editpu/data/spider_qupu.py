@@ -88,7 +88,7 @@ def get_qupu_data(url):
 # anime = ""
 
 #id,name,url,provider,provider_url,anime,score_text,opreat_type,old_url
-for num in range(1,379):
+for num in range(129,380):
     page_datas_list = get_page_datas(num)
     for key in page_datas_list:
         try:

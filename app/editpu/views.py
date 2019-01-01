@@ -68,10 +68,10 @@ def details():
     return '''<h1>数据错误,联系吉吉米米解决<h1> <a href="/editpu/list">返回</a>'''
 
 # 领取任务
-@editpu.route('/gettask', methods=['GET'])
+@editpu.route('/gettask', methods=['post'])
 @login_required
 def gettask():
-    id = request.args.get('id', "", type=int)
+    id = request.form.get('qupu_id', "", type=int)
     if id != "":
         scores = Scores.query.filter_by(id=id).first()
         scores.user_id = current_user.id
@@ -79,7 +79,7 @@ def gettask():
         scores.opreat_type = "1"
         db.session.add(scores)
         db.session.commit()
-        return redirect(url_for('editpu.list'))
+        return jsonify(data=True)
     return '''<h1>数据错误,联系吉吉米米解决<h1> <a href="/editpu/list">返回</a>'''
 
 # 登出
@@ -206,7 +206,7 @@ def overlist():
             error_out=False)
         posts = pagination.items
         listsize = pagination.total
-        return render_template('editpu/personlist.html',posts=posts,pagination=pagination,listsize=listsize,form=form,qu_name=pagination_qu_name)
+        return render_template('editpu/overlist.html',posts=posts,pagination=pagination,listsize=listsize,form=form,qu_name=pagination_qu_name)
 
 
     page = request.args.get('page', 1, type=int)
@@ -217,4 +217,4 @@ def overlist():
     listsize = pagination.total
 
     form = select_list()
-    return render_template('editpu/personoverlist.html',posts=posts,pagination=pagination,listsize=listsize,form=form)
+    return render_template('editpu/overlist.html',posts=posts,pagination=pagination,listsize=listsize,form=form)

@@ -109,7 +109,7 @@
                             <td class="last">
                                 {% if post.opreat_type == "1" %}任务已经领取
                                 {% elif post.opreat_type == "2" %}任务已完成
-                                {% elif post.opreat_type == "0" %}<a href="/myflask/editpu/gettask?id={{ post.id }}">领区任务 </a>
+                                {% elif post.opreat_type == "0" %}<a onclick="javascript:return gettask({{ post.id }});">领区任务 </a>
                                 {% else %}<td>状态错误，告诉下吉吉米米</td>{% endif %}
 
 
@@ -135,13 +135,18 @@
 
 </div>
 <script>
-    function del() {
-        var msg = "您真的确定该点已经修复？\n\n请确认！";
-        if (confirm(msg)==true){
-            return true;
-        }else{
-            return false;
-        }
+    function gettask(qupu_id) {
+        post_data = {"qupu_id":qupu_id}
+        $.ajax({
+            method: "post",
+            url: '/myflask/editpu' + '/gettask',
+            async: true,
+            dataType: "json",
+            data: post_data,
+            success: function (data) {
+                window.location.reload();
+            },
+        })
     }
 </script>
 <!-- /wrap_right -->

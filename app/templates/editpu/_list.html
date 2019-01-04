@@ -73,7 +73,7 @@
                     <a href="/myflask/editpu/overlist">已完成整理曲目</a>
 
 
-                    <a onclick="javascript:return complexselect();">选取当前页作为任务</a>
+                    <a onclick="javascript:return muladd();">选取当前页作为任务</a>
                 </h2>
 
                 <h2>
@@ -138,6 +138,17 @@
 
 </div>
 <script>
+
+    function muladd() {
+        var msg = "该操作将添加当前页面未被分配的任务？\n\n请确认！";
+        if (confirm(msg)==true){
+            complexselect()
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function gettask(qupu_id) {
         post_data = {"qupu_id":qupu_id}
         $.ajax({

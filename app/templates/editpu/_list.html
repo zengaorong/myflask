@@ -48,7 +48,6 @@
         <!-- /Header -->
     </header>
 
-
     <!-- Contents -->
     <div id="Contents">
         <script type="text/javascript">
@@ -72,6 +71,9 @@
                 <h2>任务列表
                     <a href="/myflask/editpu/personlist">个人任务列表</a>
                     <a href="/myflask/editpu/overlist">已完成整理曲目</a>
+
+
+                    <a onclick="javascript:return complexselect();">选取当前页作为任务</a>
                 </h2>
 
                 <h2>
@@ -83,6 +85,12 @@
                             </div>
                         </div>
                     </form>
+
+                    <form method="POST" action="/myflask/editpu/upload_file" type="files" name="files" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" value="Upload">
+                    </form>
+
                 </h2>
 
                 <table cellpadding="0" cellspacing="0">
@@ -99,7 +107,7 @@
                     {% for post in posts %}
 
                         <tr>
-                            <td >{{ loop.index }}</td>
+                            <td class="list_td_type" id="{{ post.id }}">{{ loop.index }}</td>
                             <td ><a href="{{post.old_url}}" target="_Blank">{{ post.name }}</a></td>
                             {% if post.opreat_type == "1" %}<td>进行中</td>
                             {% elif post.opreat_type == "2" %}<td>已完成</td>
@@ -148,6 +156,28 @@
             },
         })
     }
+
+    function complexselect(){
+        var temp_list=new Array();
+        $("td.list_td_type").each(function(){
+            // let this = $(this);
+            temp_list.push($(this).attr("id"));
+        });
+        post_data = {"qupu_ids":temp_list};
+        $.ajax({
+            method: "post",
+            url: '/myflask/editpu' + '/complexselect',
+            async: true,
+            dataType: "json",
+            data: post_data,
+            success: function (data) {
+                console.log(data)
+                window.location.reload();
+            },
+        })
+    }
+
+
 </script>
 <!-- /wrap_right -->
 </body>

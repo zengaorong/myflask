@@ -1,6 +1,6 @@
 #coding=utf-8
 from flask_wtf import FlaskForm
-from ..leotool.leoform.formcore import StringField,HiddenField,SubmitField,TextAreaField
+from ..leotool.leoform.formcore import StringField,HiddenField,SubmitField,TextAreaField,StringField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 photos = UploadSet('photos', IMAGES)
@@ -17,4 +17,6 @@ class details_qupu(FlaskForm):
 class select_list(FlaskForm):
     qu_name = StringField('曲名',validators=[DataRequired(), Length(1, 255)],render_kw={"id":"qu_name"})
     submit = SubmitField('搜索')
+
+
 

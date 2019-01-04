@@ -9,7 +9,11 @@ from sqlalchemy import and_
 from form import details_qupu,select_list
 from app.leotool.bs64pic.pic_to_bs64 import get_picbase64
 from ..models import Scores
+from data.operatedb import check_qupu_name_todb,insert_qupu_todb
+from datetime import datetime
 import sys
+import xlrd
+import uuid
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -218,3 +222,103 @@ def overlist():
 
     form = select_list()
     return render_template('editpu/overlist.html',posts=posts,pagination=pagination,listsize=listsize,form=form)
+
+
+
+# 完成列表
+@editpu.route('/complexselect', methods=['GET','post'])
+@login_required
+def complexselect():
+    qupu_list = request.form.getlist('qupu_ids[]')
+    for id in qupu_list:
+        scores = Scores.query.filter_by(id=id).first()
+        if scores.user_id=="" or scores.user_id==None:
+            scores.user_id = current_user.id
+            scores.user_name = current_user.username
+            scores.opreat_type = 1
+            db.session.add(scores)
+            db.session.commit()
+        else:
+            continue
+    return jsonify(data="ok")
+
+from flask import send_from_directory
+from werkzeug.utils import secure_filename
+@editpu.route('/get_attachment/<path:filename>')
+def get_attachment(filename):
+    print filename
+    return send_from_directory(current_app.config['UPLOADED_PHOTOS_DEST'],filename,as_attachment=True)
+
+
+ALLOWED_EXTENSIONS = ['xls', 'xlsx']
+
+def allowe_file(filename):
+    '''
+    限制上传的文件格式
+    :param filename:
+    :return:
+    '''
+    return '.' in filename and filename.rsplit('.',1)[1] in ALLOWED_EXTENSIONS
+
+
+@editpu.route('/upload', methods=['GET', 'POST'])
+@login_required
+def updata():
+    return render_template('editpu/upload.html')
+
+import os
+import uuid
+@editpu.route('/upload_file', methods=['GET', 'POST'])
+@login_required
+def upload_file():
+    # file = request.files.get('文件名') # 获取文件
+    file = request.files['file']
+    filename = secure_filename(file.filename)  # 获取文件名
+    #file.save(os.path.join(current_app.config['UPLOADED_PHOTOS_DEST'], filename)) # 保存文件
+    excel_dict = {}
+    try:
+        f = file.read()    #文件内容
+        excel_workbook = xlrd.open_workbook(file_contents=f)
+        excel_sheet01 = excel_workbook.sheets()[0]
+        terminal_num_nrows = excel_sheet01.nrows
+        terminal_num_ncols = excel_sheet01.ncols
+
+        for r in range(1,terminal_num_nrows):
+            key_str = excel_sheet01.cell(r,0).value
+            hold = []
+            #print int(key_str)
+            for c in range(0,terminal_num_ncols):
+                if type(excel_sheet01.cell(r,c).value) is float:
+                    hold.append(str((excel_sheet01.cell(r,c).value)))
+                else:
+                    hold.append(excel_sheet01.cell(r,c).value)
+            # 存入字典中
+            excel_dict[key_str] =  hold
+    except:
+        return "上传格式不正确"
+
+    success_list = []
+    error_list = []
+    for key in excel_dict:
+        if check_qupu_name_todb(key):
+            error_list.append(key)
+        else:
+            insert_list = [uuid.uuid1(),datetime.now(),key,excel_dict[key][1],None,None,None,None,0,]
+            insert_qupu_todb(insert_list)
+            success_list.append(key)
+
+    return render_template('editpu/uploadtips.html',error_list=error_list)
+
+    # if request.method == 'POST':
+    #     file = request.files['file']
+    #     if file and allowe_file(file.filename):
+    #         filename = secure_filename(file.filename)
+    #         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+    #         old_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+    #         new_filename = str(uuid.uuid4()) + '.' + filename.rsplit('.', 1)[1]
+    #         new_path = os.path.join(current_app.config['UPLOAD_FOLDER'], new_filename)
+    #         os.rename(old_path, new_path)
+    #
+    #         return 'ok'
+    #
+    # return 'not ok'

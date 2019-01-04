@@ -14,8 +14,9 @@ class Config:
     FLASKY_MAIL_SENDER = 'zengaorong@qq.com'
     FLASKY_ADMIN = '1904959670@qq.com'
     UPLOADED_PHOTOS_DEST = os.getcwd() + '/app/static/upload'
+    # UPLOADED_PHOTOS_DEST = os.environ.get(os.getcwd(), 'app/static/uploads')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    FLASKY_POSTS_PER_PAGE = 12
+    FLASKY_POSTS_PER_PAGE = 10
     FLASKY_POSTS_CHAP_PAGE = 100
     FLASKY_SERTVER_ADDR = "http://127.0.0.1:8083"
     #FLASKY_SERTVER_ADDR = "http://120.79.217.238:8080"

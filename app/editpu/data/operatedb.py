@@ -43,3 +43,20 @@ def check_qupu_todb(id):
         return True
     else:
         return False
+
+def check_qupu_name_todb(name):
+    conn= MySQLdb.connect(
+        host= '120.79.217.238',
+        port = 3306,
+        user='root',
+        passwd='7monthdleo',
+        db = dataname,
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    sqli =  "SELECT * from scores WHERE name =%s"
+    result = cur.execute(sqli,[name])
+    if result:
+        return True
+    else:
+        return False

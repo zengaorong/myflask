@@ -137,7 +137,7 @@ def add_db_data():
     print mhdata
     print mhdata.id
 
-    chapter = Chapter.query.filter_by(chapter_name=chaptername).first()
+    chapter = Chapterdchapter_name=chaptername).first()
     if(chapter==None):
         chapter = Chapter(id=uuid.uuid1(),mhname_id=mhdata.id,data=data_url,chapter_nums=0,pics_nums=len(mhurl),chapter_name=chaptername)
     else:

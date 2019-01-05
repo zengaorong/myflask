@@ -10,8 +10,6 @@ class Config:
         ['true', 'on', '1']
     MAIL_USERNAME = os.environ['MAIL_USERNAME']
     MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
-    # MAIL_USERNAME = 'zengaorong@qq.com'
-    # MAIL_PASSWORD = 'xmghqcdjsckpebci'
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
     FLASKY_MAIL_SENDER = os.environ['MAIL_USERNAME']
     FLASKY_ADMIN = '1904959670@qq.com'
